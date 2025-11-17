@@ -39,11 +39,8 @@ set /P input=%BS%
 if /I %input% EQU 0 goto startComspec
 if /I %input% EQU 6 call :checkAdminPowerShellPath6
 if /I %input% EQU 7 call :checkAdminPowerShellPath7
-if /I %input% EQU abo goto startAbout
-if /I %input% EQU abou goto startAbout
 if /I %input% EQU about goto startAbout
 if /I %input% EQU cls cls&goto startPowerShellShortcutRedirectManager
-if /I %input% EQU exi goto exitBatchProgram
 if /I %input% EQU exit goto exitBatchProgram
 echo.
 echo Invalid selection. Please try again.
@@ -58,20 +55,13 @@ if exist C:\CLI_Tools\PowerShell\6\pwsh.exe (
 )
 goto :eof
 :setPowerShellShortcutAdminReplacement6
-set "PWSH_SCRIPT_PATH=C:\CLI_Tools\PowerShell\pwshpath.bat
-set "PWSH_SHORTCUT_NAME=PowerShell.lnk"
-set "PWSH_SHORTCUT_PATH=C:\Users\%USERNAME%\Desktop\PowerShell.lnk"
 powershell -Command ^
 $WshShell = New-Object -ComObject WScript.Shell; ^
 $Shortcut = $WshShell.CreateShortcut('C:\Users\%USERNAME%\Desktop\PowerShell.lnk'); ^
 $Shortcut.TargetPath = 'CLI_Tools\Python\pwshpath.bat'; ^
 $Shortcut.Arguments = '6'; ^
 $Shortcut.WorkingDirectory = '%~dp0'; ^
-$Shortcut.Save(); ^
-set "PWSH_INSTALL_PATH=C:\CLI_Tools\PowerShell\6
-set "OLDPATH=%PATH%"
-path "%PWSH_INSTALL_PATH%;%PATH%"
-path "%OLDPATH%"
+$Shortcut.Save();
 call :startPowerShellMainPrompt6
 echo The script will now exit.
 echo.
@@ -86,20 +76,13 @@ if exist C:\CLI_Tools\PowerShell\7\pwsh.exe (
 )
 goto :eof
 :setPowerShellShortcutAdminReplacement7
-set "PWSH_SCRIPT_PATH=C:\CLI_Tools\PowerShell\pwshpath.bat
-set "PWSH_SHORTCUT_NAME=PowerShell.lnk"
-set "PWSH_SHORTCUT_PATH=C:\Users\%USERNAME%\Desktop\PowerShell.lnk"
 powershell -Command ^
 $WshShell = New-Object -ComObject WScript.Shell; ^
 $Shortcut = $WshShell.CreateShortcut('C:\Users\%USERNAME%\Desktop\PowerShell.lnk'); ^
 $Shortcut.TargetPath = 'CLI_Tools\Python\pwshpath.bat'; ^
 $Shortcut.Arguments = ''; ^
 $Shortcut.WorkingDirectory = '%~dp0'; ^
-$Shortcut.Save(); ^
-set "PWSH_INSTALL_PATH=C:\CLI_Tools\PowerShell\7
-set "OLDPATH=%PATH%"
-path "%PWSH_INSTALL_PATH%;%PATH%"
-path "%OLDPATH%"
+$Shortcut.Save();
 call :startPowerShellMainPrompt7
 echo The script will now exit.
 echo.
@@ -114,11 +97,8 @@ set /P input=%BS%
 if /I %input% EQU 0 goto startComspec
 if /I %input% EQU 6 call :checkPowerShellPath6
 if /I %input% EQU 7 call :checkPowerShellPath7
-if /I %input% EQU abo goto startAbout
-if /I %input% EQU abou goto startAbout
 if /I %input% EQU about goto startAbout
 if /I %input% EQU cls cls&goto startPowerShellShortcutRedirectManager
-if /I %input% EQU exi goto exitBatchProgram
 if /I %input% EQU exit goto exitBatchProgram
 echo.
 echo Invalid selection. Please try again.
@@ -142,10 +122,6 @@ echo oLink.Arguments = "6" >> %SCRIPT%
 echo oLink.Save >> %SCRIPT%
 cscript /nologo %SCRIPT%
 del %SCRIPT%
-set "PWSH_INSTALL_PATH=C:\CLI_Tools\PowerShell\6
-set "OLDPATH=%PATH%"
-path "%PWSH_INSTALL_PATH%;%PATH%"
-path "%OLDPATH%"
 call :startPowerShellMainPrompt6
 echo The script will now exit.
 echo.
@@ -169,10 +145,6 @@ echo oLink.Arguments = "" >> %SCRIPT%
 echo oLink.Save >> %SCRIPT%
 cscript /nologo %SCRIPT%
 del %SCRIPT%
-set "PWSH_INSTALL_PATH=C:\CLI_Tools\PowerShell\7
-set "OLDPATH=%PATH%"
-path "%PWSH_INSTALL_PATH%;%PATH%"
-path "%OLDPATH%"
 call :startPowerShellMainPrompt7
 echo The script will now exit.
 echo.
@@ -181,10 +153,11 @@ goto exitBatchProgram
 :startAbout
 echo.
 echo       Author: DavyJones324 (Alexander Summers)
+echo Program Name: Batch Script PowerShell Version Manager
 echo      Details: This QOL program is meant to manage both versions 6 and 7 of PowerShell. Version 5 is not included.
 echo               It is meant to eliminate partial backward incompatibility of running scripts designed for its platform.
 echo Compatiblity: Both the Davy Jones OS Batch Script Launcher and the Desktop Screen itself
-echo Release Date: XX/XX/XXXX
+echo Release Date: 11/21/2025
 echo.
 goto startPowerShellShortcutRedirectManager
 :exitBatchProgram
