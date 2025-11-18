@@ -24,7 +24,7 @@ echo.
 goto :eof
 :startPowerShellMainPrompt7
 @set path=C:\CLI_Tools\PowerShell\7;%path%
-echo Current version of Python is:
+echo Current version of PowerShell is:
 pwsh -v
 echo.
 echo Options: createdump, pwsh
